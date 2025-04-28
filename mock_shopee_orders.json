@@ -1,0 +1,764 @@
+{
+  "orders": [
+    {
+      "order_id": "MCK10000000",
+      "order_status": "COMPLETED",
+      "create_time": 1745790166,
+      "update_time": 1745818224,
+      "shipping_carrier": "Economy",
+      "total_amount": 644229,
+      "currency": "VND",
+      "buyer_user_id": 6305141,
+      "buyer_username": "user_863",
+      "payment_method": "Card",
+      "estimated_shipping_fee": 23339,
+      "items": [
+        {
+          "item_id": 554001,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU8117",
+          "model_id": 219,
+          "model_name": "Mẫu XL",
+          "quantity": 2,
+          "original_price": 155796,
+          "discounted_price": 77850
+        },
+        {
+          "item_id": 124649,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU4304",
+          "model_id": 5530,
+          "model_name": "Mẫu L",
+          "quantity": 4,
+          "original_price": 90245,
+          "discounted_price": 74658
+        },
+        {
+          "item_id": 610755,
+          "item_name": "Sản phẩm mẫu #3",
+          "item_sku": "SKU8241",
+          "model_id": 6484,
+          "model_name": "Mẫu S",
+          "quantity": 1,
+          "original_price": 129103,
+          "discounted_price": 159596
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000001",
+      "order_status": "COMPLETED",
+      "create_time": 1745694571,
+      "update_time": 1745837558,
+      "shipping_carrier": "Standard",
+      "total_amount": 757346,
+      "currency": "VND",
+      "buyer_user_id": 1848800,
+      "buyer_username": "user_566",
+      "payment_method": "COD",
+      "estimated_shipping_fee": 20252,
+      "items": [
+        {
+          "item_id": 721128,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU1471",
+          "model_id": 3849,
+          "model_name": "Mẫu M",
+          "quantity": 1,
+          "original_price": 138760,
+          "discounted_price": 109931
+        },
+        {
+          "item_id": 372195,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU5643",
+          "model_id": 4843,
+          "model_name": "Mẫu L",
+          "quantity": 4,
+          "original_price": 171321,
+          "discounted_price": 155821
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000002",
+      "order_status": "SHIPPED",
+      "create_time": 1745601616,
+      "update_time": 1745843528,
+      "shipping_carrier": "Express",
+      "total_amount": 238895,
+      "currency": "VND",
+      "buyer_user_id": 9416341,
+      "buyer_username": "user_60",
+      "payment_method": "COD",
+      "estimated_shipping_fee": 11290,
+      "items": [
+        {
+          "item_id": 375673,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU3632",
+          "model_id": 311,
+          "model_name": "Mẫu XL",
+          "quantity": 3,
+          "original_price": 239362,
+          "discounted_price": 131497
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000003",
+      "order_status": "COMPLETED",
+      "create_time": 1745563134,
+      "update_time": 1745818482,
+      "shipping_carrier": "Express",
+      "total_amount": 257938,
+      "currency": "VND",
+      "buyer_user_id": 4002885,
+      "buyer_username": "user_620",
+      "payment_method": "Bank Transfer",
+      "estimated_shipping_fee": 37185,
+      "items": [
+        {
+          "item_id": 335058,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU1924",
+          "model_id": 7382,
+          "model_name": "Mẫu L",
+          "quantity": 3,
+          "original_price": 72710,
+          "discounted_price": 115055
+        },
+        {
+          "item_id": 429038,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU8293",
+          "model_id": 5877,
+          "model_name": "Mẫu S",
+          "quantity": 5,
+          "original_price": 108340,
+          "discounted_price": 100323
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000004",
+      "order_status": "COMPLETED",
+      "create_time": 1745439021,
+      "update_time": 1745841207,
+      "shipping_carrier": "Economy",
+      "total_amount": 161963,
+      "currency": "VND",
+      "buyer_user_id": 5929625,
+      "buyer_username": "user_479",
+      "payment_method": "COD",
+      "estimated_shipping_fee": 10069,
+      "items": [
+        {
+          "item_id": 612923,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU7935",
+          "model_id": 4364,
+          "model_name": "Mẫu M",
+          "quantity": 3,
+          "original_price": 98731,
+          "discounted_price": 113729
+        },
+        {
+          "item_id": 483107,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU499",
+          "model_id": 8803,
+          "model_name": "Mẫu M",
+          "quantity": 4,
+          "original_price": 64638,
+          "discounted_price": 106481
+        },
+        {
+          "item_id": 688178,
+          "item_name": "Sản phẩm mẫu #3",
+          "item_sku": "SKU1108",
+          "model_id": 2599,
+          "model_name": "Mẫu S",
+          "quantity": 5,
+          "original_price": 204845,
+          "discounted_price": 105172
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000005",
+      "order_status": "COMPLETED",
+      "create_time": 1745379811,
+      "update_time": 1745834344,
+      "shipping_carrier": "Standard",
+      "total_amount": 817159,
+      "currency": "VND",
+      "buyer_user_id": 7932407,
+      "buyer_username": "user_571",
+      "payment_method": "Bank Transfer",
+      "estimated_shipping_fee": 10670,
+      "items": [
+        {
+          "item_id": 842475,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU2359",
+          "model_id": 3977,
+          "model_name": "Mẫu XL",
+          "quantity": 2,
+          "original_price": 220193,
+          "discounted_price": 48784
+        },
+        {
+          "item_id": 417797,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU4390",
+          "model_id": 6421,
+          "model_name": "Mẫu M",
+          "quantity": 1,
+          "original_price": 109882,
+          "discounted_price": 60136
+        },
+        {
+          "item_id": 827829,
+          "item_name": "Sản phẩm mẫu #3",
+          "item_sku": "SKU9619",
+          "model_id": 8583,
+          "model_name": "Mẫu S",
+          "quantity": 5,
+          "original_price": 87219,
+          "discounted_price": 105355
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000006",
+      "order_status": "COMPLETED",
+      "create_time": 1745329190,
+      "update_time": 1745840830,
+      "shipping_carrier": "Standard",
+      "total_amount": 585625,
+      "currency": "VND",
+      "buyer_user_id": 4261726,
+      "buyer_username": "user_828",
+      "payment_method": "Card",
+      "estimated_shipping_fee": 10716,
+      "items": [
+        {
+          "item_id": 557406,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU7918",
+          "model_id": 2306,
+          "model_name": "Mẫu L",
+          "quantity": 3,
+          "original_price": 50462,
+          "discounted_price": 112300
+        },
+        {
+          "item_id": 195278,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU1829",
+          "model_id": 8608,
+          "model_name": "Mẫu S",
+          "quantity": 3,
+          "original_price": 107611,
+          "discounted_price": 111895
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000007",
+      "order_status": "COMPLETED",
+      "create_time": 1745214502,
+      "update_time": 1745809873,
+      "shipping_carrier": "Economy",
+      "total_amount": 747954,
+      "currency": "VND",
+      "buyer_user_id": 9913042,
+      "buyer_username": "user_175",
+      "payment_method": "COD",
+      "estimated_shipping_fee": 12759,
+      "items": [
+        {
+          "item_id": 497299,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU9272",
+          "model_id": 2969,
+          "model_name": "Mẫu L",
+          "quantity": 1,
+          "original_price": 142947,
+          "discounted_price": 142770
+        },
+        {
+          "item_id": 356744,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU2385",
+          "model_id": 1199,
+          "model_name": "Mẫu S",
+          "quantity": 3,
+          "original_price": 179801,
+          "discounted_price": 158458
+        },
+        {
+          "item_id": 226247,
+          "item_name": "Sản phẩm mẫu #3",
+          "item_sku": "SKU3789",
+          "model_id": 2132,
+          "model_name": "Mẫu L",
+          "quantity": 4,
+          "original_price": 123049,
+          "discounted_price": 134692
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000008",
+      "order_status": "COMPLETED",
+      "create_time": 1745113910,
+      "update_time": 1745809672,
+      "shipping_carrier": "Economy",
+      "total_amount": 765131,
+      "currency": "VND",
+      "buyer_user_id": 6039973,
+      "buyer_username": "user_723",
+      "payment_method": "Card",
+      "estimated_shipping_fee": 22965,
+      "items": [
+        {
+          "item_id": 236087,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU9097",
+          "model_id": 2955,
+          "model_name": "Mẫu L",
+          "quantity": 1,
+          "original_price": 119354,
+          "discounted_price": 148666
+        },
+        {
+          "item_id": 497074,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU9770",
+          "model_id": 5446,
+          "model_name": "Mẫu M",
+          "quantity": 4,
+          "original_price": 115793,
+          "discounted_price": 157241
+        },
+        {
+          "item_id": 138798,
+          "item_name": "Sản phẩm mẫu #3",
+          "item_sku": "SKU4050",
+          "model_id": 6428,
+          "model_name": "Mẫu XL",
+          "quantity": 5,
+          "original_price": 208094,
+          "discounted_price": 63003
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000009",
+      "order_status": "COMPLETED",
+      "create_time": 1745014226,
+      "update_time": 1745835279,
+      "shipping_carrier": "Economy",
+      "total_amount": 57297,
+      "currency": "VND",
+      "buyer_user_id": 2954366,
+      "buyer_username": "user_822",
+      "payment_method": "COD",
+      "estimated_shipping_fee": 29806,
+      "items": [
+        {
+          "item_id": 782750,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU5741",
+          "model_id": 8673,
+          "model_name": "Mẫu M",
+          "quantity": 5,
+          "original_price": 227070,
+          "discounted_price": 152800
+        },
+        {
+          "item_id": 839399,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU9432",
+          "model_id": 3282,
+          "model_name": "Mẫu S",
+          "quantity": 3,
+          "original_price": 69702,
+          "discounted_price": 166319
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000010",
+      "order_status": "READY_TO_SHIP",
+      "create_time": 1744953668,
+      "update_time": 1745786358,
+      "shipping_carrier": "Economy",
+      "total_amount": 514414,
+      "currency": "VND",
+      "buyer_user_id": 7609124,
+      "buyer_username": "user_439",
+      "payment_method": "COD",
+      "estimated_shipping_fee": 16419,
+      "items": [
+        {
+          "item_id": 417991,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU7268",
+          "model_id": 4622,
+          "model_name": "Mẫu M",
+          "quantity": 4,
+          "original_price": 207383,
+          "discounted_price": 174908
+        },
+        {
+          "item_id": 45435,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU2330",
+          "model_id": 625,
+          "model_name": "Mẫu M",
+          "quantity": 5,
+          "original_price": 58027,
+          "discounted_price": 30405
+        },
+        {
+          "item_id": 916106,
+          "item_name": "Sản phẩm mẫu #3",
+          "item_sku": "SKU886",
+          "model_id": 1398,
+          "model_name": "Mẫu XL",
+          "quantity": 5,
+          "original_price": 105440,
+          "discounted_price": 172809
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000011",
+      "order_status": "READY_TO_SHIP",
+      "create_time": 1744869455,
+      "update_time": 1745819955,
+      "shipping_carrier": "Standard",
+      "total_amount": 275779,
+      "currency": "VND",
+      "buyer_user_id": 5902832,
+      "buyer_username": "user_916",
+      "payment_method": "COD",
+      "estimated_shipping_fee": 19702,
+      "items": [
+        {
+          "item_id": 708549,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU1690",
+          "model_id": 8628,
+          "model_name": "Mẫu L",
+          "quantity": 5,
+          "original_price": 134209,
+          "discounted_price": 82729
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000012",
+      "order_status": "COMPLETED",
+      "create_time": 1744756513,
+      "update_time": 1745853683,
+      "shipping_carrier": "Standard",
+      "total_amount": 169816,
+      "currency": "VND",
+      "buyer_user_id": 9829723,
+      "buyer_username": "user_575",
+      "payment_method": "Bank Transfer",
+      "estimated_shipping_fee": 30006,
+      "items": [
+        {
+          "item_id": 475249,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU9391",
+          "model_id": 5692,
+          "model_name": "Mẫu S",
+          "quantity": 1,
+          "original_price": 105387,
+          "discounted_price": 108207
+        },
+        {
+          "item_id": 844666,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU3040",
+          "model_id": 2600,
+          "model_name": "Mẫu L",
+          "quantity": 4,
+          "original_price": 92034,
+          "discounted_price": 174199
+        },
+        {
+          "item_id": 659294,
+          "item_name": "Sản phẩm mẫu #3",
+          "item_sku": "SKU1386",
+          "model_id": 8686,
+          "model_name": "Mẫu M",
+          "quantity": 3,
+          "original_price": 160168,
+          "discounted_price": 96289
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000013",
+      "order_status": "COMPLETED",
+      "create_time": 1744701128,
+      "update_time": 1745839829,
+      "shipping_carrier": "Economy",
+      "total_amount": 667097,
+      "currency": "VND",
+      "buyer_user_id": 5460220,
+      "buyer_username": "user_313",
+      "payment_method": "Bank Transfer",
+      "estimated_shipping_fee": 26830,
+      "items": [
+        {
+          "item_id": 669578,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU9923",
+          "model_id": 5275,
+          "model_name": "Mẫu XL",
+          "quantity": 5,
+          "original_price": 235684,
+          "discounted_price": 48242
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000014",
+      "order_status": "COMPLETED",
+      "create_time": 1744599754,
+      "update_time": 1745830574,
+      "shipping_carrier": "Express",
+      "total_amount": 959601,
+      "currency": "VND",
+      "buyer_user_id": 6921355,
+      "buyer_username": "user_361",
+      "payment_method": "Bank Transfer",
+      "estimated_shipping_fee": 11160,
+      "items": [
+        {
+          "item_id": 506216,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU1787",
+          "model_id": 7031,
+          "model_name": "Mẫu S",
+          "quantity": 5,
+          "original_price": 82229,
+          "discounted_price": 114816
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000015",
+      "order_status": "COMPLETED",
+      "create_time": 1744504568,
+      "update_time": 1745841349,
+      "shipping_carrier": "Standard",
+      "total_amount": 356046,
+      "currency": "VND",
+      "buyer_user_id": 8580517,
+      "buyer_username": "user_923",
+      "payment_method": "Card",
+      "estimated_shipping_fee": 37981,
+      "items": [
+        {
+          "item_id": 51872,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU4456",
+          "model_id": 1111,
+          "model_name": "Mẫu S",
+          "quantity": 4,
+          "original_price": 116462,
+          "discounted_price": 125292
+        },
+        {
+          "item_id": 201211,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU917",
+          "model_id": 1530,
+          "model_name": "Mẫu M",
+          "quantity": 1,
+          "original_price": 158729,
+          "discounted_price": 116366
+        },
+        {
+          "item_id": 114902,
+          "item_name": "Sản phẩm mẫu #3",
+          "item_sku": "SKU3981",
+          "model_id": 9932,
+          "model_name": "Mẫu L",
+          "quantity": 5,
+          "original_price": 216066,
+          "discounted_price": 158740
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000016",
+      "order_status": "SHIPPED",
+      "create_time": 1744401509,
+      "update_time": 1745823616,
+      "shipping_carrier": "Express",
+      "total_amount": 839999,
+      "currency": "VND",
+      "buyer_user_id": 613445,
+      "buyer_username": "user_299",
+      "payment_method": "COD",
+      "estimated_shipping_fee": 21689,
+      "items": [
+        {
+          "item_id": 113462,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU2910",
+          "model_id": 7198,
+          "model_name": "Mẫu M",
+          "quantity": 4,
+          "original_price": 138439,
+          "discounted_price": 164598
+        },
+        {
+          "item_id": 668600,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU2901",
+          "model_id": 2111,
+          "model_name": "Mẫu XL",
+          "quantity": 5,
+          "original_price": 108546,
+          "discounted_price": 67100
+        },
+        {
+          "item_id": 188881,
+          "item_name": "Sản phẩm mẫu #3",
+          "item_sku": "SKU2395",
+          "model_id": 2797,
+          "model_name": "Mẫu M",
+          "quantity": 3,
+          "original_price": 150961,
+          "discounted_price": 64663
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000017",
+      "order_status": "COMPLETED",
+      "create_time": 1744315120,
+      "update_time": 1745794395,
+      "shipping_carrier": "Express",
+      "total_amount": 513807,
+      "currency": "VND",
+      "buyer_user_id": 4058241,
+      "buyer_username": "user_373",
+      "payment_method": "Bank Transfer",
+      "estimated_shipping_fee": 13046,
+      "items": [
+        {
+          "item_id": 321738,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU2036",
+          "model_id": 3068,
+          "model_name": "Mẫu XL",
+          "quantity": 2,
+          "original_price": 245975,
+          "discounted_price": 113410
+        },
+        {
+          "item_id": 532202,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU643",
+          "model_id": 5150,
+          "model_name": "Mẫu XL",
+          "quantity": 3,
+          "original_price": 159668,
+          "discounted_price": 61570
+        },
+        {
+          "item_id": 31368,
+          "item_name": "Sản phẩm mẫu #3",
+          "item_sku": "SKU8931",
+          "model_id": 2574,
+          "model_name": "Mẫu XL",
+          "quantity": 1,
+          "original_price": 83837,
+          "discounted_price": 64765
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000018",
+      "order_status": "SHIPPED",
+      "create_time": 1744277483,
+      "update_time": 1745831845,
+      "shipping_carrier": "Standard",
+      "total_amount": 196134,
+      "currency": "VND",
+      "buyer_user_id": 7767248,
+      "buyer_username": "user_287",
+      "payment_method": "COD",
+      "estimated_shipping_fee": 23328,
+      "items": [
+        {
+          "item_id": 935869,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU3444",
+          "model_id": 3010,
+          "model_name": "Mẫu S",
+          "quantity": 3,
+          "original_price": 146913,
+          "discounted_price": 175950
+        }
+      ]
+    },
+    {
+      "order_id": "MCK10000019",
+      "order_status": "COMPLETED",
+      "create_time": 1744197192,
+      "update_time": 1745832764,
+      "shipping_carrier": "Economy",
+      "total_amount": 1020325,
+      "currency": "VND",
+      "buyer_user_id": 9848265,
+      "buyer_username": "user_950",
+      "payment_method": "Bank Transfer",
+      "estimated_shipping_fee": 20843,
+      "items": [
+        {
+          "item_id": 393321,
+          "item_name": "Sản phẩm mẫu #1",
+          "item_sku": "SKU522",
+          "model_id": 7617,
+          "model_name": "Mẫu XL",
+          "quantity": 5,
+          "original_price": 163365,
+          "discounted_price": 66555
+        },
+        {
+          "item_id": 727076,
+          "item_name": "Sản phẩm mẫu #2",
+          "item_sku": "SKU3882",
+          "model_id": 9888,
+          "model_name": "Mẫu M",
+          "quantity": 5,
+          "original_price": 118047,
+          "discounted_price": 48737
+        },
+        {
+          "item_id": 500663,
+          "item_name": "Sản phẩm mẫu #3",
+          "item_sku": "SKU7899",
+          "model_id": 5008,
+          "model_name": "Mẫu XL",
+          "quantity": 1,
+          "original_price": 78099,
+          "discounted_price": 137477
+        }
+      ]
+    }
+  ]
+}
