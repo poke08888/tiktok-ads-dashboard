@@ -144,10 +144,10 @@ app.get('/api/shopee/callback', async (req, res) => {
     }
     
     // Successful token exchange - redirect to React app
-    return res.redirect(`http://admin.nonelab.net?shopee_auth=success&message=Authentication+successful&shop_id=${shop_id}&expires_in=${tokenData.expire_in || 0}`);
+    return res.redirect(`http://localhost:3000?shopee_auth=success&message=Authentication+successful&shop_id=${shop_id}&expires_in=${tokenData.expire_in || 0}`);
   } catch (error) {
     console.error('Error in Shopee callback:', error);
-    res.redirect(`http://admin.nonelab.net?shopee_auth=error&message=${encodeURIComponent(error.message)}`);
+    res.redirect(`http://localhost:3000?shopee_auth=error&message=${encodeURIComponent(error.message)}`);
   }
 });
 

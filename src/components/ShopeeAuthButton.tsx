@@ -5,12 +5,13 @@ import { ShopOutlined, SyncOutlined, LogoutOutlined, ClockCircleOutlined } from 
 
 const { Text } = Typography;
 
-// Interface for the authentication status response
+// Interface for the authentication status
 interface AuthStatusResponse {
   authenticated: boolean;
+  expires_in?: number | null;
+  shop_name?: string | null;
   expired?: boolean;
-  shop_id?: string;
-  expires_at?: number;
+  message?: string | null;
   expires_in_minutes?: number;
   auto_refresh_enabled?: boolean;
 }
@@ -40,15 +41,15 @@ const ShopeeAuthButton: React.FC = () => {
   
   // Effect to update countdown timer
   useEffect(() => {
-    if (!authStatus?.authenticated || !authStatus?.expires_at) {
+    if (!authStatus?.authenticated || !authStatus?.expires_in) {
       setTimeLeft('');
       return;
     }
     
     const updateTimeLeft = () => {
-      const now = Math.floor(Date.now() / 1000);
-      const expiresAt = authStatus.expires_at || 0;
-      const secondsLeft = Math.max(0, expiresAt - now);
+      const currentTime = Math.floor(Date.now() / 1000);
+      const expiresAt = currentTime + (authStatus.expires_in || 0);
+      const secondsLeft = Math.max(0, expiresAt - currentTime);
       
       if (secondsLeft <= 0) {
         setTimeLeft('Hết hạn');
@@ -103,7 +104,7 @@ const ShopeeAuthButton: React.FC = () => {
   const checkAuthStatus = async () => {
     try {
       setLoading(true);
-      const response = await axios.get<AuthStatusResponse>('http://localhost:4000/api/shopee/auth/status');
+      const response = await axios.get<AuthStatusResponse>('http://admin.nonelab.net:4000/api/shopee/auth/status');
       setAuthStatus(response.data);
     } catch (error) {
       console.error('Error checking auth status:', error);
@@ -117,7 +118,7 @@ const ShopeeAuthButton: React.FC = () => {
   const refreshToken = async () => {
     try {
       setLoading(true);
-      await axios.post('http://localhost:4000/api/shopee/auth/refresh');
+      await axios.post('http://admin.nonelab.net:4000/api/shopee/auth/refresh');
       await checkAuthStatus();
       alert('Đã làm mới token thành công!');
     } catch (error) {
@@ -129,9 +130,16 @@ const ShopeeAuthButton: React.FC = () => {
     }
   };
 
-  // Hàm xử lý đăng nhập
+  // Hàm xử lý đăng nhập - sử dụng phiên bản server cải tiến
   const handleLogin = () => {
-    window.location.href = 'http://localhost:4000/api/shopee/auth';
+    // Giải thích cách thức xử lý OAuth flow với Shopee
+    alert('Chuẩn bị đăng nhập với Shopee:\n\n' + 
+          '1. Bạn sẽ được điều hướng tới trang xác thực Shopee\n' +
+          '2. Sau khi xác thực thành công, quá trình tự động hoàn tất\n' +
+          '3. Hệ thống sẽ tự động lưu token và chuyển hướng về trang chính');
+    
+    // Sử dụng đường dẫn tương đối cho môi trường production
+    window.location.href = '/shopee-token-helper';
   };
 
   // Render based on authentication status
@@ -217,7 +225,7 @@ const ShopeeAuthButton: React.FC = () => {
         }
         description={
           <Space direction="vertical">
-            <div>Shop ID: {authStatus.shop_id}</div>
+            <div>Shop Info: {authStatus.shop_name || 'Not available'}</div>
             {refreshing ? (
               <Button type="dashed" loading>Đang làm mới token...</Button>
             ) : (

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopee Token Helper</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .instruction-box {
+            background-color: #e9f7fe;
+            border-left: 4px solid #4285f4;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .error-box {
+            background-color: #ffeaea;
+            border-left: 4px solid #ff5252;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .success-box {
+            background-color: #e6f4ea;
+            border-left: 4px solid #34a853;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        pre {
+            background-color: #f1f3f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .tab-container {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+        .tab.active {
+            background-color: white;
+            border-bottom: 1px solid white;
+            margin-bottom: -1px;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        #status-container {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shopee Token Helper</h1>
+        <p>Công cụ này giúp quản lý token Shopee API và giải quyết các vấn đề xác thực. Chọn một trong các tùy chọn bên dưới:</p>
+        
+        <div class="tab-container">
+            <div class="tab active" onclick="openTab(event, 'check-status')">Kiểm tra trạng thái</div>
+            <div class="tab" onclick="openTab(event, 'auth-shopee')">Xác thực mới</div>
+            <div class="tab" onclick="openTab(event, 'manual-token')">Nhập token thủ công</div>
+            <div class="tab" onclick="openTab(event, 'logout')">Đăng xuất</div>
+        </div>
+        
+        <div id="check-status" class="tab-content active">
+            <h2>Trạng thái xác thực Shopee</h2>
+            <p>Kiểm tra xem bạn đã xác thực với Shopee API chưa và thời hạn của token hiện tại.</p>
+            <button onclick="checkAuthStatus()" class="button">Kiểm tra trạng thái</button>
+            <div id="status-container"></div>
+        </div>
+        
+        <div id="auth-shopee" class="tab-content">
+            <h2>Xác thực với Shopee</h2>
+            <div class="instruction-box">
+                <p>Nhấp vào nút dưới đây để bắt đầu quá trình xác thực Shopee OAuth:</p>
+                <ol>
+                    <li>Bạn sẽ được chuyển hướng đến trang xác thực Shopee</li>
+                    <li>Đăng nhập và cấp quyền cho ứng dụng</li>
+                    <li>Sau khi xác thực thành công, bạn sẽ được chuyển hướng trở lại ứng dụng</li>
+                </ol>
+                <button onclick="startShopeeAuth()" class="button">Xác thực với Shopee</button>
+            </div>
+        </div>
+        
+        <div id="manual-token" class="tab-content">
+            <h2>Nhập token thủ công</h2>
+            <p>Nếu bạn đã có token Shopee từ nguồn khác, bạn có thể nhập trực tiếp vào đây:</p>
+            <form id="manualTokenForm">
+                <div>
+                    <label for="access_token">Access Token:</label>
+                    <input type="text" id="access_token" name="access_token" placeholder="Nhập access token từ Shopee" required>
+                </div>
+                <div>
+                    <label for="refresh_token">Refresh Token (nếu có):</label>
+                    <input type="text" id="refresh_token" name="refresh_token" placeholder="Nhập refresh token (nếu có)">
+                </div>
+                <div>
+                    <label for="shop_id">Shop ID:</label>
+                    <input type="text" id="shop_id" name="shop_id" placeholder="Nhập Shop ID" value="280778267" required>
+                </div>
+                <div>
+                    <label for="expire_in">Thời hạn (giây):</label>
+                    <input type="number" id="expire_in" name="expire_in" placeholder="Thời hạn của token (giây)" value="14400">
+                </div>
+                <button type="button" onclick="saveManualToken()" class="button">Lưu Token</button>
+            </form>
+        </div>
+        
+        <div id="logout" class="tab-content">
+            <h2>Đăng xuất khỏi Shopee</h2>
+            <p>Nhấp vào nút dưới đây để xóa thông tin xác thực Shopee hiện tại:</p>
+            <button onclick="logoutShopee()" class="button">Đăng xuất</button>
+        </div>
+    </div>
+    
+    <script>
+        // Tab switching function
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            const tabs = document.getElementsByClassName("tab");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        // Check authentication status
+        async function checkAuthStatus() {
+            const statusContainer = document.getElementById('status-container');
+            statusContainer.innerHTML = '<p>Đang kiểm tra trạng thái...</p>';
+            
+            try {
+                const response = await fetch('/api/shopee/auth/status');
+                const text = await response.text(); // Lấy nội dung dạng text trước
+                
+                let data;
+                try {
+                    data = JSON.parse(text); // Phân tích JSON
+                } catch (e) {
+                    throw new Error(`Không thể phân tích JSON: ${e.message}\nNội dung nhận được: ${text.substring(0, 100)}...`);
+                }
+                
+                if (data.authenticated) {
+                    // Calculate remaining time
+                    const currentTime = Math.floor(Date.now() / 1000);
+                    const expiresAt = data.expires_at || 0;
+                    const timeLeft = expiresAt - currentTime;
+                    const hours = Math.floor(timeLeft / 3600);
+                    const minutes = Math.floor((timeLeft % 3600) / 60);
+                    
+                    statusContainer.innerHTML = `
+                        <div class="success-box">
+                            <h3>✅ Đã xác thực</h3>
+                            <p><strong>Shop ID:</strong> ${data.shop_id}</p>
+                            <p><strong>Shop Name:</strong> ${data.shop_name || 'Shopee Shop'}</p>
+                            <p><strong>Thời gian còn lại:</strong> ${hours} giờ ${minutes} phút</p>
+                        </div>
+                    `;
+                } else {
+                    statusContainer.innerHTML = `
+                        <div class="error-box">
+                            <h3>❌ Chưa xác thực</h3>
+                            <p>${data.message}</p>
+                            <p>Hãy xác thực với Shopee để sử dụng các tính năng API.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('status-container').innerHTML = `
+                    <div class="error-box">
+                        <h3>❌ Lỗi kiểm tra trạng thái</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Start Shopee authentication
+        function startShopeeAuth() {
+            window.location.href = '/api/shopee/auth';
+        }
+        
+        // Save manual token
+        async function saveManualToken() {
+            try {
+                const accessToken = document.getElementById('access_token').value.trim();
+                const refreshToken = document.getElementById('refresh_token').value.trim();
+                const shopId = document.getElementById('shop_id').value.trim();
+                const expireIn = document.getElementById('expire_in').value.trim();
+                
+                if (!accessToken) {
+                    alert('Vui lòng nhập access token!');
+                    return;
+                }
+                
+                if (!shopId) {
+                    alert('Vui lòng nhập Shop ID!');
+                    return;
+                }
+                
+                // Create token data
+                const tokenData = {
+                    access_token: accessToken,
+                    refresh_token: refreshToken || null,
+                    shop_id: shopId,
+                    expire_in: parseInt(expireIn) || 14400
+                };
+                
+                // Send data to server
+                const response = await fetch('/api/shopee/save-token', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(tokenData),
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Lưu token thành công! Bạn có thể quay lại ứng dụng và sử dụng các tính năng Shopee.');
+                    // Switch to status tab
+                    document.querySelector('.tab[onclick*="check-status"]').click();
+                    // Check status
+                    checkAuthStatus();
+                } else {
+                    alert('Lỗi: ' + (result.message || 'Không thể lưu token'));
+                }
+            } catch (error) {
+                alert('Lỗi kết nối: ' + error.message);
+            }
+        }
+        
+        // Logout from Shopee
+        async function logoutShopee() {
+            try {
+                const response = await fetch('/api/shopee/logout', {
+                    method: 'POST'
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Đã đăng xuất khỏi Shopee thành công!');
+                    // Switch to status tab
+                    document.querySelector('.tab[onclick*="check-status"]').click();
+                    // Check status
+                    checkAuthStatus();
+                } else {
+                    alert('Lỗi: ' + (result.message || 'Không thể đăng xuất'));
+                }
+            } catch (error) {
+                alert('Lỗi kết nối: ' + error.message);
+            }
+        }
+        
+        // Check status when page loads
+        document.addEventListener('DOMContentLoaded', checkAuthStatus);
+    </script>
+</body>
+</html>
