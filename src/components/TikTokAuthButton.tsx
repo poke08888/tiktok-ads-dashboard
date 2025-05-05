@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Alert, Space, Tooltip, Badge, Typography } from 'antd';
 import { ShopOutlined, SyncOutlined, LogoutOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { TIKTOK_API_CONFIG } from '../api/config';
 
 const { Text } = Typography;
 
@@ -9,17 +10,18 @@ const { Text } = Typography;
 interface AuthStatusResponse {
   authenticated: boolean;
   expired?: boolean;
-  shop_id?: string;
+  advertiser_id?: string;
   expires_at?: number;
   expires_in_minutes?: number;
   auto_refresh_enabled?: boolean;
+  scope?: string[];
 }
 
 /**
- * Component ShopeeAuthButton
- * Hiển thị nút đăng nhập/đăng xuất và trạng thái xác thực
+ * Component TikTokAuthButton
+ * Hiển thị nút đăng nhập/đăng xuất và trạng thái xác thực với TikTok
  */
-const ShopeeAuthButton: React.FC = () => {
+const TikTokAuthButton: React.FC = () => {
   // State variables
   const [authStatus, setAuthStatus] = useState<AuthStatusResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -37,7 +39,7 @@ const ShopeeAuthButton: React.FC = () => {
     // Clean up interval on unmount
     return () => clearInterval(intervalId);
   }, []);
-  
+
   // Effect to update countdown timer
   useEffect(() => {
     if (!authStatus?.authenticated || !authStatus?.expires_at) {
@@ -74,28 +76,30 @@ const ShopeeAuthButton: React.FC = () => {
     return () => clearInterval(timerId);
   }, [authStatus]);
 
-  // Xử lý redirect sau khi đăng nhập Shopee
+  // Xử lý redirect sau khi đăng nhập TikTok
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const authResult = searchParams.get('shopee_auth');
+    const authResult = searchParams.get('tiktok_auth');
     
     if (authResult === 'success') {
-      // Xóa tham số khỏi URL để tránh reload làm mất state
-      const newUrl = window.location.pathname;
-      window.history.replaceState({}, document.title, newUrl);
+      // Xóa query params sau khi xử lý
+      const url = new URL(window.location.href);
+      url.searchParams.delete('tiktok_auth');
+      window.history.replaceState({}, '', url.toString());
       
-      // Cập nhật trạng thái và thông báo thành công
+      // Thông báo đăng nhập thành công
       checkAuthStatus();
-      alert('Đăng nhập Shopee thành công!');
     } else if (authResult === 'error') {
-      const errorMessage = searchParams.get('message') || 'Không thể đăng nhập với Shopee.';
+      const errorMessage = searchParams.get('message') || 'Unknown error';
       
-      // Xóa tham số khỏi URL
-      const newUrl = window.location.pathname;
-      window.history.replaceState({}, document.title, newUrl);
+      // Xóa query params sau khi xử lý
+      const url = new URL(window.location.href);
+      url.searchParams.delete('tiktok_auth');
+      url.searchParams.delete('message');
+      window.history.replaceState({}, '', url.toString());
       
       // Thông báo lỗi
-      alert(`Lỗi đăng nhập: ${errorMessage}`);
+      setError(`Lỗi đăng nhập TikTok: ${errorMessage}`);
     }
   }, []);
 
@@ -103,45 +107,63 @@ const ShopeeAuthButton: React.FC = () => {
   const checkAuthStatus = async () => {
     try {
       setLoading(true);
-      const response = await axios.get<AuthStatusResponse>('http://localhost:4000/api/shopee/auth/status');
+      const response = await axios.get<AuthStatusResponse>(TIKTOK_API_CONFIG.AUTH_STATUS_URL);
       setAuthStatus(response.data);
     } catch (error) {
-      console.error('Error checking auth status:', error);
-      setAuthStatus({ authenticated: false });
+      console.error('Error checking TikTok auth status:', error);
+      setError('Không thể kết nối với máy chủ TikTok. Vui lòng thử lại sau.');
     } finally {
       setLoading(false);
     }
   };
 
-  // Hàm làm mới token khi hết hạn
+  // Hàm làm mới token
   const refreshToken = async () => {
     try {
-      setLoading(true);
-      await axios.post('http://localhost:4000/api/shopee/auth/refresh');
-      await checkAuthStatus();
-      alert('Đã làm mới token thành công!');
+      setRefreshing(true);
+      setError(null);
+      
+      const response = await axios.post(TIKTOK_API_CONFIG.AUTH_REFRESH_URL);
+      
+      if (response.data.success) {
+        await checkAuthStatus();
+      } else {
+        setError('Không thể làm mới token TikTok. Vui lòng đăng nhập lại.');
+      }
     } catch (error) {
       console.error('Error refreshing token:', error);
-      alert('Không thể làm mới token. Vui lòng đăng nhập lại.');
-      setAuthStatus({ authenticated: false });
+      setError('Lỗi khi làm mới token TikTok. Vui lòng đăng nhập lại.');
     } finally {
-      setLoading(false);
+      setRefreshing(false);
     }
   };
 
-  // Hàm xử lý đăng nhập
+  // Hàm đăng nhập
   const handleLogin = () => {
-    window.location.href = 'http://localhost:4000/api/shopee/auth';
+    window.location.href = TIKTOK_API_CONFIG.AUTH_URL;
+  };
+
+  // Hàm đăng xuất
+  const handleLogout = async () => {
+    try {
+      await axios.post(TIKTOK_API_CONFIG.AUTH_LOGOUT_URL);
+      await checkAuthStatus();
+    } catch (error) {
+      console.error('Error logging out:', error);
+      setError('Lỗi khi đăng xuất. Vui lòng thử lại sau.');
+    }
   };
 
   // Render based on authentication status
-  if (loading) return <Button type="default" loading icon={<ShopOutlined />}>Kiểm tra...</Button>;
+  if (loading) {
+    return <Button type="default" loading icon={<ShopOutlined />}>Kiểm tra kết nối TikTok...</Button>;
+  }
   
   // If there's an error
   if (error) {
     return (
       <Alert
-        message="Lỗi kết nối Shopee"
+        message="Lỗi kết nối TikTok"
         description={error}
         type="error"
         closable
@@ -150,18 +172,18 @@ const ShopeeAuthButton: React.FC = () => {
     );
   }
   
-  // Nếu chưa xác thực hoặc token hết hạn
+  // If not authenticated or token expired
   if (!authStatus?.authenticated || authStatus?.expired) {
     return (
       <Alert
         type="warning"
-        message={authStatus?.expired ? 'Token Shopee đã hết hạn' : 'Chưa kết nối Shopee'}
+        message={authStatus?.expired ? 'Token TikTok đã hết hạn' : 'Chưa kết nối TikTok'}
         description={
           <Space direction="vertical">
             <div>
               {authStatus?.expired 
-                ? 'Token Shopee đã hết hạn. Vui lòng làm mới hoặc đăng nhập lại.' 
-                : 'Bạn chưa kết nối với Shopee API. Hãy đăng nhập để xem dữ liệu đơn hàng.'}
+                ? 'Token TikTok đã hết hạn. Vui lòng làm mới hoặc đăng nhập lại.' 
+                : 'Bạn chưa kết nối với TikTok API. Hãy đăng nhập để xem dữ liệu chiến dịch.'}
             </div>
             <Space>
               <Button
@@ -169,7 +191,7 @@ const ShopeeAuthButton: React.FC = () => {
                 icon={authStatus?.expired ? <SyncOutlined /> : <ShopOutlined />}
                 onClick={authStatus?.expired ? refreshToken : handleLogin}
               >
-                {authStatus?.expired ? 'Làm mới Token' : 'Đăng nhập với Shopee'}
+                {authStatus?.expired ? 'Làm mới Token' : 'Đăng nhập với TikTok'}
               </Button>
               {authStatus?.expired && (
                 <Button
@@ -186,14 +208,14 @@ const ShopeeAuthButton: React.FC = () => {
       />
     );
   }
-
-  // Nếu đã xác thực
-  return authStatus ? (
+  
+  // If authenticated
+  return (
     <Space direction="vertical" size="small" style={{ width: '100%' }}>
       <Alert
         message={
           <Space>
-            {authStatus.expired ? "Token đã hết hạn" : "Shopee đã kết nối thành công"}
+            {authStatus.expired ? "Token đã hết hạn" : "TikTok đã kết nối thành công"}
             {!authStatus.expired && timeLeft && (
               <Badge 
                 status={authStatus.expired ? 'error' : 
@@ -217,7 +239,10 @@ const ShopeeAuthButton: React.FC = () => {
         }
         description={
           <Space direction="vertical">
-            <div>Shop ID: {authStatus.shop_id}</div>
+            <div>Advertiser ID: {authStatus.advertiser_id}</div>
+            {authStatus.scope && authStatus.scope.length > 0 && (
+              <div>Scopes: {authStatus.scope.join(', ')}</div>
+            )}
             {refreshing ? (
               <Button type="dashed" loading>Đang làm mới token...</Button>
             ) : (
@@ -243,7 +268,7 @@ const ShopeeAuthButton: React.FC = () => {
                 <Button 
                   type="default" 
                   icon={<LogoutOutlined />} 
-                  onClick={handleLogin}
+                  onClick={handleLogout}
                 >
                   Đăng xuất
                 </Button>
@@ -254,8 +279,7 @@ const ShopeeAuthButton: React.FC = () => {
         type={authStatus.expired ? "warning" : "success"}
       />
     </Space>
-  ) : null;
-
+  );
 };
 
-export default ShopeeAuthButton;
+export default TikTokAuthButton;

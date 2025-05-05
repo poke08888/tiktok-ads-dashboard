@@ -64,16 +64,19 @@ export const getAuthorizationUrl = async (): Promise<string> => {
   // Tạo code_challenge từ code_verifier
   const codeChallenge = await generateCodeChallenge(codeVerifier);
   
-  // Cấu trúc tham số cho TikTok Portal API
+  // Cấu trúc tham số cho TikTok Portal API qua proxy
   const params = new URLSearchParams({
-    // Sử dụng app_id theo đúng yêu cầu của API
     app_id: TIKTOK_API_CONFIG.APP_ID,
     redirect_uri: TIKTOK_API_CONFIG.REDIRECT_URI,
     state: Math.random().toString(36).substring(2, 15),
     scope: TIKTOK_API_CONFIG.SCOPES.join(','),
-    response_type: 'code'
+    response_type: 'code',
+    code_challenge: codeChallenge,
+    code_challenge_method: 'S256'
   });
 
+  // Sử dụng endpoint proxy thay vì trực tiếp đến TikTok
+  console.log(`${TIKTOK_API_CONFIG.AUTH_URL}?${params.toString()}`);
   return `${TIKTOK_API_CONFIG.AUTH_URL}?${params.toString()}`;
 };
 
@@ -91,7 +94,7 @@ export const exchangeCodeForToken = async (code: string): Promise<AuthTokenRespo
     }
     
     const response = await axios.post<AuthTokenResponse>(
-      TIKTOK_API_CONFIG.ACCESS_TOKEN_URL,
+      TIKTOK_API_CONFIG.DIRECT_ACCESS_TOKEN_URL,
       {
         app_id: TIKTOK_API_CONFIG.APP_ID,
         secret: TIKTOK_API_CONFIG.APP_SECRET,
@@ -135,7 +138,7 @@ export const refreshAccessToken = async (): Promise<AuthTokenResponse['data']> =
     }
 
     const response = await axios.post<AuthTokenResponse>(
-      TIKTOK_API_CONFIG.REFRESH_TOKEN_URL,
+      TIKTOK_API_CONFIG.DIRECT_REFRESH_TOKEN_URL,
       {
         app_id: TIKTOK_API_CONFIG.APP_ID,
         secret: TIKTOK_API_CONFIG.APP_SECRET,

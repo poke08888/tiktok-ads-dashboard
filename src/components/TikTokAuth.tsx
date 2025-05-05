@@ -59,6 +59,7 @@ const TikTokAuth: React.FC<TikTokAuthProps> = ({ onSuccess, onError }) => {
       setIsAuthenticating(true);
       // getAuthorizationUrl trả về Promise vì cần tạo code_challenge
       const authUrl = await getAuthorizationUrl();
+      // console.log(authUrl);
       window.location.href = authUrl;
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Lỗi tạo URL xác thực';

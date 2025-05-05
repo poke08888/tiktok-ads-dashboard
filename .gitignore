@@ -19,6 +19,7 @@
 # token storage
 shopee_tokens.json
 tiktok_tokens.json
+tokens.db
 
 # logs
 npm-debug.log*
